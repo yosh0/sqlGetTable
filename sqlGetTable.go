@@ -57,6 +57,8 @@ func GetAll(q string, DB *Conn) ([]string, error) {
 				switch t := col.(type) {
 				default:
 					fmt.Printf("Unexpected type %T\n", t)
+				case nil:
+					record[columns[i]] = ""
 				case bool:
 					record[columns[i]] = col.(bool)
 				case int:
