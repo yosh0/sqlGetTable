@@ -53,27 +53,25 @@ func GetAll(q string, DB *Conn) ([]string, error) {
 			_ = v
 		}
 		for i, col := range values {
-			if col != nil {
-				switch t := col.(type) {
-				default:
-					fmt.Printf("Unexpected type %T\n", t)
-				case nil:
-					record[columns[i]] = ""
-				case bool:
-					record[columns[i]] = col.(bool)
-				case int:
-					record[columns[i]] = col.(int)
-				case int64:
-					record[columns[i]] = col.(int64)
-				case float64:
-					record[columns[i]] = col.(float64)
-				case string:
-					record[columns[i]] = col.(string)
-				case []byte:   // -- all cases go HERE!
-					record[columns[i]] = string(col.([]byte))
-				case time.Time:
-//					record[columns[i]] = string(col.(string))
-				}
+			switch t := col.(type) {
+			default:
+				fmt.Printf("Unexpected type %T\n", t)
+			case nil:
+				record[columns[i]] = ""
+			case bool:
+				record[columns[i]] = col.(bool)
+			case int:
+				record[columns[i]] = col.(int)
+			case int64:
+				record[columns[i]] = col.(int64)
+			case float64:
+				record[columns[i]] = col.(float64)
+			case string:
+				record[columns[i]] = col.(string)
+			case []byte:   // -- all cases go HERE!
+				record[columns[i]] = string(col.([]byte))
+			case time.Time:
+//				record[columns[i]] = string(col.(string))
 			}
 		}
 		kkk, err := json.Marshal(record)
