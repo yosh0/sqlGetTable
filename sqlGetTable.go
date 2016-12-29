@@ -62,6 +62,10 @@ func GetAll(q string, DB *Conn) ([]string, error) {
 				record[columns[i]] = col.(bool)
 			case int:
 				record[columns[i]] = col.(int)
+			case int16:
+				record[columns[i]] = col.(int16)
+			case int32:
+				record[columns[i]] = col.(int32)
 			case int64:
 				record[columns[i]] = col.(int64)
 			case float64:
