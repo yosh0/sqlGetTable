@@ -19,15 +19,18 @@ type Conn struct {
 }
 
 func GetAll(q string, DB *Conn) ([]string, error) {
+	var r []string
 	dbinfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 		DB.Host, DB.Port, DB.User, DB.Pass, DB.Name, DB.SSL)
 	db, err := sql.Open(DB.Type, dbinfo)
 	if (err != nil) {
 		fmt.Println(err)
+		return r, err
 	}
 	rows, err := db.Query(q)
 	if err != nil {
 		fmt.Println(err)
+		return r, err
 	}
 	defer rows.Close()
 	columns, _ := rows.Columns()
