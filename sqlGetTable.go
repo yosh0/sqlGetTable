@@ -92,3 +92,4 @@ func GetAll(q string, DB *Conn) ([]string, error) {
 	return jsonMap, err
 }
 
+
