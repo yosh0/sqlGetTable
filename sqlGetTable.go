@@ -84,6 +84,7 @@ func GetAll(q string, DB *Conn) ([]string, error) {
 		kkk, err := json.Marshal(record)
 		if err != nil {
 			fmt.Println(err)
+			return r, err
 		}
 		jsonMap = append(jsonMap, string(kkk))
 	}
