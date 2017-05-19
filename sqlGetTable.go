@@ -78,7 +78,7 @@ func GetAll(q string, DB *Conn) ([]string, error) {
 			case []byte:   // -- all cases go HERE!
 				record[columns[i]] = string(col.([]byte))
 			case time.Time:
-//				record[columns[i]] = string(col.(string))
+				record[columns[i]] = col.(time.Time)
 			}
 		}
 		kkk, err := json.Marshal(record)
